@@ -8,7 +8,7 @@ var describe = mocha.describe;
 var it = mocha.it;
 var assert = chai.assert;
 
-describe("Verify Stock", function() {
+describe("Verify & Get Latest Stock", function() {
     let testRan = 0;
     beforeEach(function() {
         testRan++;
