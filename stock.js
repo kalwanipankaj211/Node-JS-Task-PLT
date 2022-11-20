@@ -73,10 +73,11 @@ class StockService {
                     qty = qty + (-item.qty);
                 }
             });
+            console.log(`Before Transaction stock : ${sku} , Stock:`, product[0].stock);
             product[0].stock = product[0].stock + qty;
             let obj = { sku: sku, quantity: qty };
             console.log("transaction data::", obj);
-            console.log(`final stock ${sku} quantity:`, product[0].stock);
+            console.log(`final stock : ${sku} , Available Quantity:`, product[0].stock);
             return 1;
         }
         console.log(`Following product ${sku} stock is not available`);
