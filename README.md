@@ -3,7 +3,7 @@
 2. npm start
 ----------------------------------------------------------------------------------------
 # Command to test the app:-
-npm test
+1. npm test
 -----------------------------------------------------------------------------------------
 Notes:-
 1. stocks.js - To  retrieve latest stocks after all transactions and calculates final stock available by subtracting made transaction quantity
