@@ -4,13 +4,19 @@
     "description": "You are given two json files:  - stock.json: contains objects which represent the starting stock levels for given SKUS  - transactions.json: contains an array of transactions since the stock levels were recorded in `stock.json`",
     "main": "app.js",
     "scripts": {
-        "test": "node test.js",
+        "test": "mocha",
         "start": "node app.js"
     },
     "dependencies": {
-        "jsonexport": "^3.2.0"
+        "jsonexport": "^3.2.0",
+        "chai": "4.3.7",
+        "mocha": "8.1.3"
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "chai": "^4.3.7",
+        "mocha": "8.1.3"
+    }
 }

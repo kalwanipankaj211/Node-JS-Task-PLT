@@ -6,7 +6,7 @@ class StockService {
     constructor() {
         this.newStocks = [];
         this.currentStocks = stocks;
-        this.transactions = transactions; 
+        this.transactions = transactions;
     }
 
     // get all latest stocks after overall sell of each product
@@ -22,27 +22,48 @@ class StockService {
 
             //let get Unique Transactions
             let arr = this.getUniqueTransactions();
-            this.newStocks = [...this.newStocks , ...arr];
+            this.newStocks = [...this.newStocks, ...arr];
             return this.newStocks;
-        }
-        catch (e) {
+        } catch (e) {
             console.log("error in getting lates stocks", stocks);
             return e;
         }
     }
 
     // filter transaction not present in stocks
-    getUniqueTransactions(){
+    getUniqueTransactions() {
         const results = this.transactions.filter((item) => !this.currentStocks.some((stockUnit) => stockUnit.sku === item.sku));
         let uniqueTransactions = [];
-        for(let transaction of results){
-            uniqueTransactions.push({sku : transaction.sku, stock : 0});
+        for (let transaction of results) {
+            uniqueTransactions.push({ sku: transaction.sku, stock: 0 });
         }
         var jsonObject = uniqueTransactions.map(JSON.stringify);
         var uniqueSet = new Set(jsonObject);
         var uniqueArray = Array.from(uniqueSet).map(JSON.parse);
 
         return uniqueArray;
+    }
+
+    verifyStocks(sku) {
+        const results = this.transactions.filter((item) => (item.sku === sku));
+        const stock = this.currentStocks.filter((item) => item.sku === sku);
+        if (results.length && !stock.length) {
+            console.log(`stock doesn't exist for stock ${sku}`);
+            return -1;
+        } else if (!results.length && stock.length) {
+            return `No Transacton made for stock ${sku}`;
+        }
+        return 1;
+    }
+
+    verifyTransaction(sku) {
+        const results = this.transactions.filter((item) => (item.sku === sku));
+        const stock = this.currentStocks.filter((item) => item.sku === sku);
+        if (!results.length && stock.length) {
+            console.log(`No Transacton made for stock ${sku}`);
+            return -1;
+        }
+        return 1;
     }
 }
 
