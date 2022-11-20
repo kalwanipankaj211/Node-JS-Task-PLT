@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-task-main",
+  "version": "1.0.0",
+  "description": "You are given two json files:  - stock.json: contains objects which represent the starting stock levels for given SKUS  - transactions.json: contains an array of transactions since the stock levels were recorded in `stock.json`",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "jsonexport": "^3.2.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
