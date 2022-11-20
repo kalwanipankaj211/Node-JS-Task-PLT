@@ -44,26 +44,43 @@ class StockService {
         return uniqueArray;
     }
 
+    //sample test case function
     verifyStocks(sku) {
         const results = this.transactions.filter((item) => (item.sku === sku));
         const stock = this.currentStocks.filter((item) => item.sku === sku);
         if (results.length && !stock.length) {
-            console.log(`stock doesn't exist for stock ${sku}`);
+            console.log(`stock doesn't exist for product sku: ${sku}`);
             return -1;
         } else if (!results.length && stock.length) {
-            return `No Transacton made for stock ${sku}`;
+            console.log(`stock doesn't exist for product sku: ${sku}`);
+            return -1;
         }
+        console.log(`product sku ${sku} have some transactions available`);
         return 1;
     }
 
-    verifyTransaction(sku) {
+    //test case for caculating lates stock
+    calculateFinalStocks(sku) {
         const results = this.transactions.filter((item) => (item.sku === sku));
-        const stock = this.currentStocks.filter((item) => item.sku === sku);
-        if (!results.length && stock.length) {
-            console.log(`No Transacton made for stock ${sku}`);
-            return -1;
+        const product = this.currentStocks.filter((item) => item.sku === sku);
+        if (product.length) {
+            var qty = 0;
+            results.forEach((item) => {
+                if (item.type === 'refund') {
+                    qty = qty + item.qty;
+                }
+                if (item.type === 'order') {
+                    qty = qty + (-item.qty);
+                }
+            });
+            product[0].stock = product[0].stock + qty;
+            let obj = { sku: sku, quantity: qty };
+            console.log("transaction data::", obj);
+            console.log(`final stock ${sku} quantity:`, product[0].stock);
+            return 1;
         }
-        return 1;
+        console.log(`Following product ${sku} stock is not available`);
+        return -1;
     }
 }
 
