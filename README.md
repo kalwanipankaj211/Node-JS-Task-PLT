@@ -1,8 +1,8 @@
-# Command to run app
-npm install
-npm start
+# Command to run app:-
+1. npm install
+2. npm start
 ----------------------------------------------------------------------------------------
-# Command to test the app
+# Command to test the app:-
 npm test
 -----------------------------------------------------------------------------------------
 Notes:-
